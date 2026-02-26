@@ -1,0 +1,329 @@
+:root {
+    --black: #0a0908;
+    --amber: #e8a820;
+    --gold: #c9910a;
+    --warm-white: #f0e8d8;
+    --muted: #6b6050;
+    --surface: #161410;
+    --surface2: #1e1b16;
+}
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html,
+body {
+    height: 100%;
+}
+
+body {
+    background: var(--black);
+    color: var(--warm-white);
+    font-family: 'Syne', sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    overflow: hidden;
+    position: relative;
+}
+
+/* Background */
+.bg-glow {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    background:
+        radial-gradient(ellipse 50% 50% at 50% 50%, rgba(232, 168, 32, 0.07) 0%, transparent 70%);
+}
+
+.bg-grain {
+    position: fixed;
+    inset: 0;
+    opacity: 0.035;
+    pointer-events: none;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    background-size: 200px;
+}
+
+/* Logo top-left */
+.page-logo {
+    position: fixed;
+    top: 1.75rem;
+    left: 2.5rem;
+    text-decoration: none;
+    z-index: 10;
+}
+
+.page-logo svg {
+    height: 28px;
+    width: auto;
+    overflow: visible;
+}
+
+/* Main content */
+.container {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 2rem;
+    animation: fadeUp 0.7s ease 0.1s both;
+}
+
+@keyframes fadeUp {
+    from {
+        opacity: 0;
+        transform: translateY(24px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.error-code {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(7rem, 20vw, 14rem);
+    line-height: 0.85;
+    letter-spacing: 0.04em;
+    color: var(--warm-white);
+    position: relative;
+    user-select: none;
+}
+
+.error-code span {
+    color: var(--amber);
+}
+
+/* waveform decoration under 404 */
+.waveform {
+    display: flex;
+    align-items: flex-end;
+    gap: 3px;
+    height: 32px;
+    margin: 1.5rem 0 2rem;
+}
+
+.waveform-bar {
+    width: 3px;
+    background: var(--amber);
+    border-radius: 2px;
+    opacity: 0.3;
+    animation: wave 1.4s ease-in-out infinite;
+}
+
+.waveform-bar:nth-child(1) {
+    height: 40%;
+    animation-delay: 0s;
+}
+
+.waveform-bar:nth-child(2) {
+    height: 70%;
+    animation-delay: 0.1s;
+}
+
+.waveform-bar:nth-child(3) {
+    height: 100%;
+    animation-delay: 0.2s;
+}
+
+.waveform-bar:nth-child(4) {
+    height: 55%;
+    animation-delay: 0.3s;
+}
+
+.waveform-bar:nth-child(5) {
+    height: 80%;
+    animation-delay: 0.15s;
+}
+
+.waveform-bar:nth-child(6) {
+    height: 45%;
+    animation-delay: 0.25s;
+}
+
+.waveform-bar:nth-child(7) {
+    height: 90%;
+    animation-delay: 0.05s;
+}
+
+.waveform-bar:nth-child(8) {
+    height: 60%;
+    animation-delay: 0.35s;
+}
+
+.waveform-bar:nth-child(9) {
+    height: 75%;
+    animation-delay: 0.12s;
+}
+
+.waveform-bar:nth-child(10) {
+    height: 35%;
+    animation-delay: 0.22s;
+}
+
+@keyframes wave {
+
+    0%,
+    100% {
+        opacity: 0.15;
+        transform: scaleY(0.6);
+    }
+
+    50% {
+        opacity: 0.5;
+        transform: scaleY(1);
+    }
+}
+
+.error-title {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.75rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--amber);
+    margin-bottom: 1rem;
+}
+
+.error-msg {
+    font-size: 1rem;
+    line-height: 1.7;
+    color: var(--muted);
+    max-width: 380px;
+    margin-bottom: 0.5rem;
+}
+
+.redirect-notice {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.68rem;
+    letter-spacing: 0.14em;
+    color: rgba(232, 168, 32, 0.6);
+    margin-bottom: 2.5rem;
+    display: none;
+    /* shown via JS when redirecting */
+}
+
+/* Quick links */
+.quick-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    justify-content: center;
+    margin-bottom: 2.5rem;
+}
+
+.quick-link {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    font-family: 'DM Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--muted);
+    text-decoration: none;
+    padding: 0.7rem 1.2rem;
+    border: 1px solid rgba(255, 255, 255, 0.07);
+    background: var(--surface2);
+    transition: color 0.25s ease, border-color 0.25s ease, background 0.25s ease;
+}
+
+.quick-link:hover {
+    color: var(--amber);
+    border-color: rgba(232, 168, 32, 0.3);
+    background: rgba(232, 168, 32, 0.04);
+}
+
+.quick-link-icon {
+    font-size: 1rem;
+}
+
+/* Back home button */
+.btn-home {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.72rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--black);
+    background: var(--amber);
+    text-decoration: none;
+    padding: 0.9rem 2.25rem;
+    clip-path: polygon(0 0, calc(100% - 10px) 0, 100% 10px, 100% 100%, 10px 100%, 0 calc(100% - 10px));
+    transition: background 0.3s ease, transform 0.2s ease;
+}
+
+.btn-home:hover {
+    background: var(--gold);
+    transform: translateY(-2px);
+}
+
+/* countdown bar */
+.countdown-wrap {
+    margin-top: 2rem;
+    width: 240px;
+}
+
+.countdown-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.6rem;
+    letter-spacing: 0.18em;
+    color: var(--muted);
+    margin-bottom: 0.5rem;
+    text-align: left;
+}
+
+.countdown-bar {
+    height: 2px;
+    background: rgba(255, 255, 255, 0.07);
+    position: relative;
+    overflow: hidden;
+}
+
+.countdown-fill {
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    background: var(--amber);
+    width: 100%;
+    transform-origin: left;
+}
+
+/* Footer */
+.page-footer {
+    position: fixed;
+    bottom: 1.5rem;
+    left: 50%;
+    transform: translateX(-50%);
+    font-family: 'DM Mono', monospace;
+    font-size: 0.6rem;
+    letter-spacing: 0.14em;
+    color: var(--muted);
+    white-space: nowrap;
+    z-index: 10;
+}
+
+@media (max-width: 480px) {
+    .error-code {
+        font-size: clamp(6rem, 28vw, 10rem);
+    }
+
+    .quick-links {
+        gap: 0.5rem;
+    }
+
+    .quick-link {
+        font-size: 0.58rem;
+        padding: 0.6rem 0.9rem;
+    }
+}
